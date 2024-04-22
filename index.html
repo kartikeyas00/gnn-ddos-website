@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Neural Networks: Revolutionizing DDoS Attack Detection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="gnn_ddos.css">
+</head>
+
+<body>
+    <div class="container-xxl py-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-gradient p-4 rounded-3 mb-5">
+                    <h1 class="text-center mb-5 display-4 fw-bold text-white text-shadow">Graph Neural Networks:
+                        Revolutionizing DDoS Attack Detection</h1>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5 mb-4">
+
+            <h2 class="row-title text-center mb-4 display-6 fw-bold text-white text-decoration-underline">Introduction
+            </h2>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide1Modal">
+                    <img src="assets/img/modal1/message_passing_gnn.png" alt="Message Passing in GNNs" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">What are Graph Neural Networks?</h3>
+                        <p class="card-text">Learn about the fundamentals of GNNs and their applications.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide2Modal">
+                    <img src="assets/img/modal2/neural_network.png" alt="Input Structures: GNNs vs Traditional Neural Networks"
+                        class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">GNNs vs Traditional Neural Networks</h3>
+                        <p class="card-text">Discover the key differences between GNNs and traditional neural networks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide3Modal">
+                    <img src="assets/img/modal3/dgl_logo.png" alt="DGL Logo" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">Simple GNN Code in DGL</h3>
+                        <p class="card-text">Explore a simple code example of implementing GNNs using the DGL library.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <h2 class="row-title text-center mb-4 display-6 fw-bold text-white text-decoration-underline">Evolution of
+                GNNs</h2>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide4Modal">
+                    <img src="assets/img/modal4/milestones_in_tech.png" alt="Milestones in Technology" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">Milestones in GNN evolution</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide5Modal">
+                    <img src="assets/img/modal5/adoption_to_gnn.png" alt="Adoption of GNN" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">Adoption of GNN</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <h2 class="row-title text-center mb-4 display-6 fw-bold text-white text-decoration-underline">Understanding
+                DDoS Attacks</h2>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide6Modal">
+                    <img src="assets/img/modal6/ddos_attack.png" alt="Milestones in Technology" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">What is a DDoS Attack?</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide7Modal">
+                    <img src="assets/img/modal7/ddos_attackers.png" alt="Adoption of GNN" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">Notable Example of DDoS Attack Impact</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <h2 class="row-title text-center mb-4 display-6 fw-bold text-white text-decoration-underline">Traditional
+                vs. GNN Approaches in DDoS
+                Detection</h2>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide8Modal">
+                    <img src="assets/img/modal8/traditional_methods_ddos_detection.png" alt="Milestones in Technology"
+                        class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">Traditional Approaches</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide9Modal">
+                    <img src="assets/img/modal9/gnn_methods_ddos_detection.png" alt="Adoption of GNN" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">The GNN Approach</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <h2 class="row-title text-center mb-4 display-6 fw-bold text-white text-decoration-underline">GNN in DDoS
+                Detection: Techniques and
+                Models</h2>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide10Modal">
+                    <img src="assets/img/modal10/stgcv.png" alt="Milestones in Technology" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">DDoS detection based on Spatial-Temporal Graph Convolutional
+                            Networks</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card bg-dark text-white border-0 shadow h-100" data-bs-toggle="modal"
+                    data-bs-target="#slide11Modal">
+                    <img src="assets/img/modal11/graphddos.png" alt="Adoption of GNN" class="card-img-top">
+                    <div class="card-body">
+                        <h3 class="card-title fw-bold">DDoS detection based on Graph Isomorphism Network</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modals for Introduction-->
+    <!-- Modal 1 -->
+    <div class="modal fade" id="slide1Modal" tabindex="-1" aria-labelledby="slide1ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide1ModalLabel">What are Graph Neural Networks?</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="col-lg-6 d-flex flex-columns">
+                                <div class="my-2">
+                                    <p class="fs-2">Graph Neural Networks (GNNs) are a class of deep learning models
+                                        designed to work with graph-structured data. They have gained significant
+                                        attention
+                                        in recent years due to their ability to capture complex relationships and
+                                        patterns
+                                        within graphs.</p>
+                                    <p class="fs-4">At the core of GNNs are the concepts of nodes and edges:</p>
+                                    <ul class="fs-4">
+                                        <li><strong>Nodes</strong> (also known as vertices) represent entities or
+                                            objects in
+                                            a graph. These can be users in a social network, atoms in a molecule, or web
+                                            pages on the internet.</li>
+                                        <li><strong>Edges</strong> represent the relationships or connections between
+                                            nodes.
+                                            They can be friendships between users, chemical bonds between atoms, or
+                                            hyperlinks between web pages.</li>
+                                    </ul>
+                                    <p class="fs-4">GNNs learn rich node representations, called <span
+                                            class="slide-text-emphasize">embeddings</span>, by
+                                        iteratively aggregating information from neighboring nodes. This process allows
+                                        the
+                                        model to capture both the local structure around each node and the global
+                                        structure
+                                        of the entire graph.</p>
+                                    <p class="fs-4">The key idea behind GNNs is <span
+                                            class="slide-text-emphasize">message passing</span>. In each layer of a
+                                        GNN, nodes send their current embeddings as "messages" to their neighbors. Each
+                                        node
+                                        then aggregates the received messages to update its own embedding. By stacking
+                                        multiple layers, GNNs can capture higher-order relationships and long-range
+                                        dependencies in the graph.</p>
+                                    <p class="fs-4">GNNs have found applications in various domains, including:</p>
+                                    <ul class="fs-4">
+                                        <li>Social network analysis</li>
+                                        <li>Molecular property prediction</li>
+                                        <li>Knowledge graph completion</li>
+                                        <li>Recommender systems</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex flex-column">
+                                <div class="text-center mb-4">
+                                    <figure class="figure">
+                                        <img src="assets/img/modal1/gnn_modal_1.gif" class="img-fluid" alt="System Design">
+                                        <figcaption class="figure-caption">Image taken from Tensorflow</figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-primary">Demo</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade" id="slide2Modal" tabindex="-1" aria-labelledby="slide2ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide2ModalLabel">GNNs vs Traditional Neural Networks
+                    </h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="col-lg-12 d-flex flex-columns">
+                                <div>
+                                    <p class="fs-1">Graph Neural Networks (GNNs) differ from traditional neural
+                                        networks in several key aspects. Let's explore the main differences between GNNs
+                                        and
+                                        traditional neural networks:</p>
+                                    <table class="table table-dark slide-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="fs-3">Aspect</th>
+                                                <th class="fs-3">Graph Neural Networks</th>
+                                                <th class="fs-3">Traditional Neural Networks</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="fs-4">Input Structure</td>
+                                                <td class="fs-4">Graphs with variable size and connectivity</td>
+                                                <td class="fs-4">Fixed-size, grid-like input (e.g., images, sequences)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fs-4">Relationships</td>
+                                                <td class="fs-4">Models and learns from relationships between entities
+                                                </td>
+                                                <td class="fs-4">Assumes independence between input features</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fs-4">Node-level Tasks</td>
+                                                <td class="fs-4">Node classification, node regression, node clustering
+                                                </td>
+                                                <td class="fs-4">Not applicable</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fs-4">Edge-level Tasks</td>
+                                                <td class="fs-4">Link prediction, edge classification</td>
+                                                <td class="fs-4">Not applicable</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fs-4">Graph-level Tasks</td>
+                                                <td class="fs-4">Graph classification, graph regression</td>
+                                                <td class="fs-4">Sample-level classification, regression</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fs-4">Permutation Invariance</td>
+                                                <td class="fs-4">Inherently permutation-invariant due to message passing
+                                                </td>
+                                                <td class="fs-4">Requires explicit techniques (e.g., pooling) for
+                                                    permutation
+                                                    invariance
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fs-4">Inductive Capability</td>
+                                                <td class="fs-4">Can generalize to unseen graphs with different
+                                                    structure</td>
+                                                <td class="fs-4">Limited to fixed-size inputs seen during training</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="fs-4">Interpretability</td>
+                                                <td class="fs-4">Can provide insights into important nodes, edges, and
+                                                    subgraphs</td>
+                                                <td class="fs-4">Often difficult to interpret learned features</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <p class="fs-3">The key advantages of GNNs over traditional neural networks
+                                        include:</p>
+                                    <ul class="fs-3">
+                                        <li>Handling complex, non-Euclidean data structures</li>
+                                        <li>Leveraging rich relational information</li>
+                                        <li>Enabling node-level, edge-level, and graph-level predictions</li>
+                                        <li>Generalizing to unseen graphs and subgraphs</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div class="modal fade" id="slide3Modal" tabindex="-1" aria-labelledby="slide3ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide3ModalLabel">Simple GNN Code in DGL</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="col-lg-12 d-flex flex-columns">
+                                <div>
+                                    <p class="fs-2">Let's take a look at a simple code example of implementing a Graph
+                                        Neural Network using the Deep Graph Library (DGL) in Python:</p>
+                                    <pre class="slide-code hljs python fs-4">
+    import dgl
+    import torch
+    
+    # Create a simple graph
+    g = dgl.graph(([0, 1, 2], [1, 2, 0]))
+    
+    # Node features
+    g.ndata['x'] = torch.ones(3, 2)
+    
+    # A simple GNN model
+    class GNN(torch.nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.layer = dgl.nn.GraphConv(2, 2)
+    
+        def forward(self, g, x):
+            x = self.layer(g, x)
+            return x
+    
+    model = GNN()
+    out = model(g, g.ndata['x'])
+                                </pre>
+
+                                    <p class="fs-4">In this example:</p>
+                                    <ol class="fs-4">
+                                        <li>We import the necessary libraries, <code>dgl</code> and <code>torch</code>.
+                                        </li>
+                                        <li>We create a simple graph <code>g</code> with three nodes and three edges
+                                            using
+                                            <code>dgl.graph()</code>.
+                                        </li>
+                                        <li>We assign node features <code>x</code> to the graph using
+                                            <code>g.ndata['x']</code>.
+                                        </li>
+                                        <li>We define a simple GNN model class <code>GNN</code> that inherits from
+                                            <code>torch.nn.Module</code>.
+                                        </li>
+                                        <li>Inside the <code>GNN</code> class, we define a graph convolutional layer
+                                            <code>dgl.nn.GraphConv</code> with input and output dimensions of 2.
+                                        </li>
+                                        <li>We implement the forward pass of the model in the <code>forward</code>
+                                            function,
+                                            where we apply the graph convolutional layer to the input graph
+                                            <code>g</code>
+                                            and node features <code>x</code>.
+                                        </li>
+                                        <li>We create an instance of the <code>GNN</code> model and apply it to the
+                                            graph
+                                            <code>g</code> and its node features <code>g.ndata['x']</code> to obtain the
+                                            output <code>out</code>.
+                                        </li>
+                                    </ol>
+                                    <p class="fs-4">This is just a simple example, but it demonstrates the basic
+                                        structure of defining and using a GNN model with DGL.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modals for Evolution of GNNs-->
+
+    <!--Modal 4-->
+    <div class="modal fade" id="slide4Modal" tabindex="-1" aria-labelledby="slide2ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide2ModalLabel">Milestones in GNN evolution
+                    </h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <div class="timeline-container">
+                                    <div class="timeline">
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">2005</div>
+                                            <div class="timeline-content">
+                                                <h3>Initial Concepts</h3>
+                                                <p>The concept of using neural networks
+                                                    for graph data begins to take shape.
+                                                    Early models, such as those by
+                                                    Scarselli et al. in 2009, introduced
+                                                    the idea of applying neural networks
+                                                    directly to graphs, laying the
+                                                    foundation for modern GNNs.</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">2013</div>
+                                            <div class="timeline-content">
+                                                <h3>Spectral Approaches</h3>
+                                                <p>The introduction of spectral graph convolution, using the graph
+                                                    Laplacian in the Fourier domain, marks a significant advance. Bruna
+                                                    et al. (2013) and Henaff et al. (2014) pioneered this approach,
+                                                    which involves transforming graph data into the spectral domain and
+                                                    applying filters.</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">2015</div>
+                                            <div class="timeline-content">
+                                                <h3>Chebyshev Spectral CNNs</h3>
+                                                <p>Defferrard et al. introduced Chebyshev
+                                                    Spectral CNNs in 2016, which use Chebyshev
+                                                    polynomials to approximate the spectral filters,
+                                                    reducing the computational complexity associated
+                                                    with earlier spectral methods.</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">2016</div>
+                                            <div class="timeline-content">
+                                                <h3>Spatial Methods Emerge</h3>
+                                                <p>Duvenaud et al. (2015) and Atwood and Towsley (2016) developed models
+                                                    that directly operate on the graph nodes and their neighbors,
+                                                    avoiding the Fourier transform and working directly in the spatial
+                                                    domain.</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">2017</div>
+                                            <div class="timeline-content">
+                                                <h3>Graph Convolutional Networks (GCNs)</h3>
+                                                <p>Kipf and Welling introduced the Graph Convolutional Network (GCN)
+                                                    model in 2017, which simplifies graph convolutions by using an
+                                                    efficient layer-wise propagation rule. This model has become one of
+                                                    the most popular and widely used types of GNNs.</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">2018</div>
+                                            <div class="timeline-content">
+                                                <h3>Graph Attention Networks (GATs)</h3>
+                                                <p>Veličković et al. presented the Graph Attention Network (GAT) in
+                                                    2018, which incorporates attention mechanisms into the propagation
+                                                    step, allowing for more dynamic weighting of node contributions.</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">2019</div>
+                                            <div class="timeline-content">
+                                                <h3>Scalability and Efficiency Improvements</h3>
+                                                <p>As GNNs start being applied to larger graphs, researchers focus on
+                                                    improving scalability and computational efficiency. Methods like
+                                                    GraphSAGE by Hamilton et al. (2017) and FastGCN by Chen et al.
+                                                    (2018) contribute to this goal by sampling techniques and more
+                                                    efficient convolution approaches.</p>
+                                            </div>
+                                        </div>
+                                        <div class="timeline-item">
+                                            <div class="timeline-date">2020 and Beyond</div>
+                                            <div class="timeline-content">
+                                                <h3>Diverse Applications and Advancements</h3>
+                                                <p>GNNs are applied in a variety of fields, from drug discovery to
+                                                    social network analysis. New architectures and techniques, such as
+                                                    heterogeneous GNNs and temporal GNNs, continue to evolve, expanding
+                                                    the scope and capability of GNNs.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal 5-->
+    <div class="modal fade" id="slide5Modal" tabindex="-1" aria-labelledby="slide5ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide5ModalLabel">Adoption of GNN</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="gnnPublications" style="width: 100%; height: 80vh;"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="gnnPublicationsImportantConf" style="width: 100%; height: 80vh;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal 6-->
+    <div class="modal fade" id="slide6Modal" tabindex="-1" aria-labelledby="slide6ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide6ModalLabel">What is a DDoS Attack?</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="col-lg-6 d-flex flex-columns">
+                                <div class="mb-5">
+                                    <p class="fs-2">A Distributed Denial of Service (DDoS) attack involves
+                                        overwhelming a target—such as a server, website, or network—with a flood of
+                                        internet
+                                        traffic. This traffic is generated from multiple compromised systems, often
+                                        distributed globally, making it difficult to mitigate due to its vast and
+                                        scattered
+                                        nature. The aim is to make the service slow to respond or completely unavailable
+                                        to
+                                        legitimate users.</p>
+                                    <p class="fs-4">DDoS attacks can be categorized into three main types:</p>
+                                    <ul class="fs-4">
+                                        <li><strong>Volume-based Attacks:</strong> These focus on consuming all the
+                                            available bandwidth between the target and the broader internet, using
+                                            techniques like UDP floods and ICMP floods.</li>
+                                        <li><strong>Protocol Attacks:</strong> These target the network layer or the
+                                            transport layer of the OSI model, aiming to exhaust server resources with
+                                            malformed or spoofed packets, leading to service disruption.</li>
+                                        <li><strong>Application Layer Attacks:</strong> These are more sophisticated and
+                                            target the top layer of the OSI model, which interacts with end-user
+                                            applications. They aim to exhaust server resources by initiating processes
+                                            that
+                                            consume computational power, such as repeated HTTP requests.</li>
+                                    </ul>
+                                    <p class="fs-2 text-decoration-underline">Mitigation of DDoS attacks</p>
+                                    <p class="fs-4">Mitigation of DDoS attacks involves several strategies,
+                                        depending
+                                        on the type and complexity of the attack. It may include setting up <span
+                                            class="slide-text-emphasize">robust
+                                            firewalls</span>, <span class="slide-text-emphasize">employing intrusion
+                                            detection systems</span>, and using <span class="slide-text-emphasize">DDoS
+                                            protection services
+                                            that can analyze and filter out malicious traffic from legitimate
+                                            traffic</span>.
+                                        Continuous monitoring and adaptive security measures are crucial to defend
+                                        against
+                                        evolving DDoS tactics.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 d-flex flex-column">
+                                <div class="text-center mb-4">
+                                    <figure class="figure">
+                                        <img src="assets/img/modal6/ddos_attack_modal_6.png" class="img-fluid"
+                                            alt="System Design">
+                                        <figcaption class="figure-caption">Image taken from Rugged Tooling</figcaption>
+
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal 7-->
+    <div class="modal fade" id="slide7Modal" tabindex="-1" aria-labelledby="slide7ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide7ModalLabel">Notable Example of DDoS Attack
+                        Impact?</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="col-lg-8 d-flex flex-columns">
+                                <div class="my-2">
+                                    <p class="fs-1 text-decoration-underline">Anonymous Sudan’s Attack on Microsoft</p>
+
+                                    <ul class="fs-3">
+                                        <li class="mb-2"><strong class="text-decoration-underline">Incident Overview:</strong> In
+                                            June 2023, Microsoft experienced
+                                            significant service disruptions due to DDoS attacks attributed to Anonymous
+                                            Sudan, a group linked to the pro-Russian collective Killnet.</li>
+                                        <li class="mb-2"><strong class="text-decoration-underline">Attack Details:</strong> The
+                                            attack primarily utilized Layer 7 DDoS
+                                            strategies including <span class="slide-text-emphasize">HTTP(S) flood, Cache
+                                                bypass, and Slowloris attacks</span> to
+                                            overwhelm Microsoft's cloud services including Outlook and Office 365.</li>
+                                        <li class="mb-2"><strong class="text-decoration-underline">Impact:</strong> The attack led to
+                                            substantial service outages
+                                            affecting
+                                            thousands of users globally and required Microsoft to enhance its Layer 7
+                                            protections like tuning its Azure Web Application Firewall to mitigate
+                                            similar
+                                            future attacks.</li>
+                                    </ul>
+                                    <br>
+                                    <br>
+                                    <p class="fs-1 text-decoration-underline">DDoS Attack on Global Internet
+                                        Infrastructure</p>
+
+                                    <ul class="fs-3">
+                                        <li class="mb-2"><strong class="text-decoration-underline">Incident Overview:</strong> In
+                                            August 2023, major internet
+                                            infrastructure providers including Google Cloud, Cloudflare, and Amazon Web
+                                            Services experienced what has been described as the <span
+                                                class="slide-text-emphasize">largest distributed
+                                                denial-of-service (DDoS) attack</span> in history. This massive assault
+                                            targeted
+                                            multiple services simultaneously, leading to significant disruptions.</li>
+                                        <li class="mb-2"><strong class="text-decoration-underline">Attack Details:</strong> The
+                                            attack involved overwhelming the
+                                            providers
+                                            with a vast amount of malicious traffic, <span
+                                                class="slide-text-emphasize">exploiting a zero-day vulnerability</span>
+                                            which had not been previously identified or mitigated against. This
+                                            unprecedented scale of attack was noted for its potential to cause
+                                            widespread
+                                            internet disruption if not addressed.</li>
+                                        <li class="mb-2"><strong class="text-decoration-underline">Impact:</strong> The attack caused
+                                            temporary outages and slowdowns
+                                            across various online services, highlighting the vulnerabilities in global
+                                            internet infrastructure and the need for enhanced cybersecurity measures.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 d-flex flex-column">
+                                <div class="text-center mb-4">
+                                    <figure class="figure">
+                                        <img src="assets/img/modal7/anon_sudan_modal_modal_7.jpeg" class="img-fluid"
+                                            alt="System Design">
+
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal 8-->
+    <div class="modal fade" id="slide8Modal" tabindex="-1" aria-labelledby="slide8ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide8ModalLabel">Traditional Approaches for DDoS
+                        Detection</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="col-lg-12 d-flex flex-columns">
+                                <div class="my-2">
+                                    <p class="fs-1 text-decoration-underline">Approaches</p>
+
+                                    <ul class="fs-4 ">
+                                        <li class="mb-3"><strong class="text-decoration-underline">Filtering
+                                                techniques:</strong> block traffic based on IP addresses,
+                                            ports</li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">Statistical
+                                                analysis:</strong> detect anomalies in traffic patterns,
+                                            e.g. entropy, diversity</li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">Machine
+                                                learning:</strong> classify traffic using extracted features
+                                        </li>
+                                        <ul class="">
+                                            <li>Neural networks, radial basis function networks</li>
+                                            <li>k-Nearest Neighbors, Hidden Markov Models</li>
+                                        </ul>
+                                    </ul>
+                                    <br>
+                                    <br>
+                                    <p class="fs-1 text-decoration-underline">Advantages:</p>
+
+                                    <ul class="fs-4">
+                                        <li class="mb-3"><strong class="text-decoration-underline">Simplicity and Low
+                                                computational overhead:</strong> Traditional
+                                            methods
+                                            like filtering and statistical analysis are
+                                            relatively simple to implement and understand. They don't require complex
+                                            machine learning models or extensive computational resources.</li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">Effectiveness against
+                                                known attacks:</strong> Traditional methods
+                                            can be
+                                            highly effective
+                                            against known DDoS attack patterns. Signature-based detection can quickly
+                                            identify and block traffic that matches known malicious patterns.</li>
+                                        <li class="mb-3"><strong
+                                                class="text-decoration-underline">Interpretability:</strong> The
+                                            decision-making process of
+                                            traditional
+                                            methods is often
+                                            more transparent and interpretable than complex machine learning models.
+                                            This
+                                            can be important for understanding why certain traffic is flagged as
+                                            malicious.
+                                        </li>
+                                    </ul>
+
+                                    <p class="fs-1 text-decoration-underline">Disadvantages:</p>
+                                    <ul class="fs-4">
+                                        <li class="mb-3"><strong class="text-decoration-underline">Limited
+                                                adaptability:</strong> Traditional methods often rely on
+                                            fixed
+                                            rules or
+                                            thresholds, making them less adaptable to novel or evolving DDoS attack
+                                            patterns. Attackers can bypass detection by modifying their techniques.</li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">Manual feature
+                                                engineering:</strong> Many traditional machine
+                                            learning
+                                            approaches require
+                                            manual feature engineering, which can be time-consuming and requires domain
+                                            expertise. The selected features may not always capture the most relevant
+                                            information for detecting DDoS attacks.</li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">Inability to model
+                                                complex relationships:</strong> Traditional
+                                            methods
+                                            often consider
+                                            traffic features in isolation, ignoring the complex relationships and
+                                            dependencies between network entities. This can limit their ability to
+                                            detect
+                                            sophisticated, coordinated DDoS attacks.
+                                        </li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">Scalability
+                                                issues:</strong> Some traditional methods, like
+                                            statistical
+                                            analysis, may
+                                            struggle to scale to large, high-speed networks with massive volumes of
+                                            traffic
+                                            data. They may require extensive computational resources to keep up with
+                                            real-time detection requirements.
+                                        </li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">High false positive
+                                                rates:</strong> Traditional methods can be prone
+                                            to
+                                            high false
+                                            positive rates, flagging legitimate traffic as malicious. This can lead to
+                                            unnecessary blocking of benign traffic and disrupt normal network
+                                            operations.
+                                        </li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">Difficulty detecting
+                                                low-volume attacks:</strong> Techniques like
+                                            volume-based detection
+                                            may struggle to identify low-volume, slow-and-low DDoS attacks that don't
+                                            significantly deviate from normal traffic patterns.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal 9-->
+
+    <div class="modal fade" id="slide9Modal" tabindex="-1" aria-labelledby="slide9ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide9ModalLabel">The GNN Approach</h2>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+                            <div class="col-lg-12 d-flex flex-columns">
+                                <div class="my-2">
+                                    <p class="fs-1 text-decoration-underline">General GNN Approach:</p>
+
+                                    <ul class="fs-4 ">
+                                        <li class="mb-3">Represents the network as a graph, where nodes represent
+                                            devices and edges
+                                            represent connections between them</li>
+                                        <li class="mb-3">Node features can include attributes like IP address, port, and
+                                            traffic
+                                            statistics, while edge features can include bandwidth and latency</li>
+                                        <li class="mb-3">GNNs learn node and edge embeddings that capture the network's
+                                            structure and
+                                            dynamics, enabling them to detect malicious activity by classifying nodes or
+                                            entire graphs.</li>
+                                    </ul>
+                                    <br>
+                                    <br>
+                                    <p class="fs-1 text-decoration-underline">Advantages:</p>
+
+                                    <ul class="fs-4">
+                                        <li class="mb-3"><strong class="text-decoration-underline">Automated feature
+                                                learning:</strong> GNNs can automatically learn
+                                            relevant features from the graph structure, reducing the need for manual
+                                            feature
+                                            engineering and domain expertise</li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">Modeling complex
+                                                relationships:</strong> GNNs can capture the complex
+                                            interactions and dependencies between network entities, enabling them to
+                                            detect
+                                            sophisticated, coordinated DDoS attacks</li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">Generalization to
+                                                unseen data:</strong> GNNs can perform inductive
+                                            learning, allowing them to generalize to unseen nodes and network
+                                            structures,
+                                            making them more adaptable to evolving DDoS attack patterns
+                                        </li>
+                                    </ul>
+
+                                    <p class="fs-1 text-decoration-underline">Disadvantages:</p>
+                                    <ul class="fs-4">
+                                        <li class="mb-3"><strong class="text-decoration-underline">Computational
+                                                complexity:</strong> Training GNNs can be computationally
+                                            intensive, especially for large-scale networks with millions of nodes and
+                                            edges,
+                                            requiring significant computational resources and time.</li>
+                                        <li class="mb-3"><strong class="text-decoration-underline">Interpretability
+                                                challenges:</strong> The decision-making process of
+                                            GNNs can be more opaque compared to traditional methods, making it harder to
+                                            understand why certain nodes or subgraphs are flagged as malicious.</li>
+
+                                        <li class="mb-3"><strong class="text-decoration-underline">Difficulty detecting
+                                                low-volume attacks:</strong> Techniques like
+                                            volume-based detection
+                                            may struggle to identify low-volume, slow-and-low DDoS attacks that don't
+                                            significantly deviate from normal traffic patterns.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal 10-->
+    <div class="modal fade" id="slide10Modal" tabindex="-1" aria-labelledby="slide10ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide10ModalLabel">Detecting DDoS Attacks in SDN Using
+                        Spatial-Temporal Graph Convolutional Networks</h2> <button type="button"
+                        class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+
+                            <div class="col-lg-6 d-flex flex-columns ">
+                                <div class="mb-5">
+                                    <h3 class="fs-1 text-decoration-underline">Network Modeling</h3>
+                                    <ul class="fs-4">
+                                        <li class="mb-2">The network is modeled as a graph, with <span
+                                                class="slide-text-emphasize">switches as nodes and links as edges</span>
+                                        </li>
+                                        <li class="mb-2"><span class="slide-text-emphasize">Network state
+                                                information</span> is used
+                                            to create feature vectors for each switch</li>
+                                        <li class="mb-2">The graph captures both the <span
+                                                class="slide-text-emphasize">network
+                                                topology</span> and the <span class="slide-text-emphasize">temporal
+                                                dynamics</span> of
+                                            network states</li>
+                                    </ul>
+                                    <h3 class="fs-1 text-decoration-underline">Spatial-Temporal Graph Convolutional
+                                        Network (ST-GCN)</h3>
+                                    <ul class="fs-4">
+                                        <li class="mb-2">Learns to identify patterns indicative of attacks by analyzing
+                                            the
+                                            graph-based
+                                            network representation</li>
+                                        <li class="mb-2">Considers both the <span class="slide-text-emphasize">spatial
+                                                dependencies</span> (how switches influence each other) and
+                                            <span class="slide-text-emphasize">temporal dependencies</span> (how network
+                                            states evolve over time)
+                                        </li>
+                                    </ul>
+
+                                    <h3 class="fs-1 text-decoration-underline">Training the Model</h3>
+                                    <ul class="fs-4">
+                                        <li class="mb-2">The ST-GCN is trained on simulated data that mimics real-world
+                                            DDoS attacks
+                                        </li>
+                                        <li class="mb-2">The model learns to distinguish between normal traffic and
+                                            attack traffic
+                                        </li>
+                                        <li class="mb-2">The training process adjusts the model's parameters to minimize
+                                            classification
+                                            errors</li>
+                                    </ul>
+
+                                    <h3 class="fs-1 text-decoration-underline">Detecting DDoS Attacks</h3>
+                                    <ul class="fs-4">
+                                        <li class="mb-2">When deployed, the ST-GCN continuously monitors the network
+                                            state</li>
+                                        <li class="mb-2">It analyzes the graph-based representation of the network in
+                                            real-time</li>
+                                        <li class="mb-2">If a DDoS attack is detected, the model identifies the specific
+                                            switches and
+                                            links involved</li>
+                                    </ul>
+
+                                    <h3 class="fs-1 text-decoration-underline">Conclusion</h3>
+                                    <ul class="fs-4">
+                                        <li class="mb-2">The combination of graph-based modeling and ST-GCN represents a
+                                            powerful new
+                                            approach to DDoS attack detection</li>
+                                        <li class="mb-2">By harnessing the power of AI and the granular visibility
+                                            provided by modern
+                                            network technologies, we can build more secure and resilient networks</li>
+                                        <li class="mb-2">This research paves the way for a new generation of
+                                            intelligent, adaptive
+                                            DDoS
+                                            defense systems</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 d-flex flex-column">
+                                <div class="text-center mb-4">
+                                    <img src="assets/img/modal10/stgcv/stgcv-system-design.gif" class="img-fluid"
+                                        alt="System Design">
+                                    <h4>System Design Overview</h4>
+                                </div>
+                                <div class="text-center ">
+                                    <img src="assets/img/modal10/stgcv/stgcv-model.gif" class="img-fluid" alt="ST-GCN Model">
+                                    <h4>ST-GCN Model Architecture</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Modal 11-->
+
+    <div class="modal fade" id="slide11Modal" tabindex="-1" aria-labelledby="slide11ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title text-center w-100" id="slide11ModalLabel">GraphDDoS: Effective DDoS Attack
+                        Detection Using Graph Neural Networks</h2> <button type="button"
+                        class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid h-100">
+                        <div class="row h-100">
+
+                            <div class="col-lg-6 d-flex flex-columns ">
+                                <div class="mb-5">
+                                    <h3 class="fs-1 text-decoration-underline">Traffic Modeling</h3>
+                                    <ul class="fs-4">
+                                        <li class="mb-2"><strong class="text-decoration-underline">Grouping Packets:</strong> Network traffic data is divided into groups,
+                                            where each group contains packets with the <span
+                                                class="slide-text-emphasize">same source IP address and destination IP
+                                                address</span>.
+                                        </li>
+                                        <li class="mb-2"><strong class="text-decoration-underline">Sorting Packets:</strong> Within each group, the packets are sorted based
+                                            on <span class="slide-text-emphasize">their timestamp in ascending
+                                                order</span> to maintain
+                                            correct sequence of communication between client and server.</li>
+                                        <li class="mb-2"><strong class="text-decoration-underline">Creating Nodes:</strong> The sorted packets in each group are converted
+                                            into nodes in the graph.
+                                            <ul class="fs-4">
+                                                <li>
+                                                    The total number of nodes in a graph is determined by a <span
+                                                        class="slide-text-emphasize">predefined parameter "n"</span>.
+                                                </li>
+                                                <li>
+                                                    The nodes are assigned features, such as the <span
+                                                        class="slide-text-emphasize">protocol type (e.g., TCP, UDP)
+                                                        of the packet</span>.
+                                                </li>
+                                                <li>
+                                                    To differentiate between upstream and downstream packets, the
+                                                    packet size is encoded as <span
+                                                        class="slide-text-emphasize">negative for upstream</span> and
+                                                    <span class="slide-text-emphasize">positive for downstream</span>.
+                                                </li>
+
+                                            </ul>
+
+
+                                        </li>
+                                        <li class="mb-2"> There are two types of edges:
+
+                                            <ul class="fs-4">
+                                                <li>
+                                                    Edges between consecutive packets in the same direction (client to
+                                                    server or server to client)
+                                                </li>
+                                                <li>
+                                                    Edges between the last packet in one direction and the first packet
+                                                    in the opposite direction.
+                                                </li>
+                                            </ul>
+
+                                        </li>
+                                    </ul>
+                                    <h3 class="fs-1 text-decoration-underline">GraphDDoS Model</h3>
+                                    <ul class="fs-4">
+                                        <li class="mb-2"><strong class="text-decoration-underline">Node Representation:</strong> Graph Isomorphism Network (GIN) is
+                                            employed to learn informative node embeddings by capturing the structural
+                                            information of the graph </li>
+                                        <li class="mb-2"><strong class="text-decoration-underline">Graph Representation:</strong> The node representations are aggregated
+                                            using a permutation-invariant
+                                            readout function to generate a graph-level representation.
+                                        </li>
+                                        <li class="mb-2"><strong class="text-decoration-underline">Classification:</strong> The graph-level representation is passed
+                                            through a fully connected layer
+                                            followed by a softmax activation function to perform the final
+                                            classification task of distinguishing between normal traffic and DDoS
+                                            attacks. </li>
+                                    </ul>
+
+                                    <h3 class="fs-1 text-decoration-underline">Training the Model</h3>
+                                    <ul class="fs-4">
+                                        <li class="mb-2">Trained using labeled data from the CIC-IDS2017 and CIC-DoS2017
+                                            datasets, which include both normal traffic and various types of DDoS
+                                            attacks.
+                                        </li>
+                                        <li class="mb-2">The model learns to distinguish between normal traffic and
+                                            attack traffic
+                                        </li>
+                                        <li class="mb-2">The training process involves techniques such as mini-batch
+                                            gradient descent.
+                                        </li>
+                                    </ul>
+
+                                    <h3 class="fs-1 text-decoration-underline">Conclusion</h3>
+                                    <ul class="fs-4">
+                                        <li class="mb-2">Achieves high accuracy and low false positive rates on
+                                            benchmark datasets.
+                                        </li>
+                                        <li class="mb-2">Opens new possibilities for developing more advanced and robust
+                                            DDoS detection systems using GNN.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 d-flex flex-column">
+                                <div class="text-center mb-4">
+                                    <figure class="figure">
+                                        <img src="assets/img/modal11/graphddos/graphddos-graph1.png" class="img-fluid"
+                                            alt="System Design">
+                                        <figcaption class="figure-caption">The endpoint traffic graph of HTTP GET
+                                            attack.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                <div class="text-center mb-4">
+                                    <figure class="figure">
+                                        <img src="assets/img/modal11/graphddos/graphddos-graph2.png" class="img-fluid"
+                                            alt="System Design">
+                                        <figcaption class="figure-caption">The endpoint traffic graph of SYN flood
+                                            attack.
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                                <div class="text-center mb-4">
+                                    <figure class="figure">
+                                        <img src="assets/img/modal11/graphddos/graphddos-arch.png" class="img-fluid"
+                                            alt="System Design">
+                                        <figcaption class="figure-caption">The architecture of GraphDDoS</figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" onclick="showPreviousModal(this)">Previous</button>
+                    <button type="button" class="btn btn-danger" onclick="showNextModal(this)">Next</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script src="adoption_of_gnn.js"></script>
+<script>
+    function showNextModal(currentButton) {
+      const currentModal = currentButton.closest('.modal');
+      const currentModalId = `#${currentModal.id}`;
+      bootstrap.Modal.getOrCreateInstance(document.querySelector(currentModalId)).hide();
+      const currentIndex = parseInt(currentModalId.match(/\d+/)[0], 10);
+      if (currentIndex === 11){
+        return;
+      }
+      const nextIndex = currentIndex + 1;
+      const nextModalId = `#slide${nextIndex}Modal`;
+      bootstrap.Modal.getOrCreateInstance(document.querySelector(nextModalId)).show();
+    }
+  
+    function showPreviousModal(currentButton) {
+      const currentModal = currentButton.closest('.modal');
+      const currentModalId = `#${currentModal.id}`;
+      bootstrap.Modal.getOrCreateInstance(document.querySelector(currentModalId)).hide();
+      const currentIndex = parseInt(currentModalId.match(/\d+/)[0], 10);
+      if (currentIndex === 1 ){
+        return;
+      }
+      const previousIndex = currentIndex - 1;
+      const previousModalId = `#slide${previousIndex}Modal`;
+      bootstrap.Modal.getOrCreateInstance(document.querySelector(previousModalId)).show();
+    }
+  </script>
+
+</html>
